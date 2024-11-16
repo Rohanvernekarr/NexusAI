@@ -1,0 +1,5 @@
+import run from "./src/config/Nexus.js";
+
+run("Tell me about JavaScript").then((response) => {
+  console.log("AI Response:", response);
+});
