@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from './component/Sidebar/SIdebar'
+import Sidebar from './component/Sidebar/Sidebar'
 import Main from './component/Main/Main'
 import ContextProvider from './context/Context'
 

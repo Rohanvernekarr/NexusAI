@@ -14,48 +14,27 @@ const Main = () => {
     input,
   } = useContext(Context);
 
+  const handleSend = () => {
+    if (input.trim()) {
+      onSent();
+    }
+  };
+
   return (
     <div className="main">
       <div className="nav">
         <p>NexusAI</p>
-        <img src={assets.user_icon} alt="" />
+        <img src={assets.user_icon} alt="User Icon" />
       </div>
       <div className="main-container">
-        {!showResult ? (
-          <>
-            <div className="greet">
-              <p>
-                <span>Hello, Devloper</span>
-              </p>
-              <p>How can I help you today?</p>
-            </div>
-            <div className="cards">
-              <div className="card">
-                <p>Suggest good projects for AR</p>
-                <img src={assets.compass_icon} alt="" />
-              </div>
-              <div className="card">
-                <p>5 min craft ideas</p>
-                <img src={assets.bulb_icon} alt="" />
-              </div>
-              <div className="card">
-                <p>Goodle dev fest pricing</p>
-                <img src={assets.message_icon} alt="" />
-              </div>
-              <div className="card">
-                <p>Embedded code for google apis font</p>
-                <img src={assets.code_icon} alt="" />
-              </div>
-            </div>
-          </>
-        ) : (
+        {showResult ? (
           <div className="result">
             <div className="result-title">
-              <img src={assets.user_icon} alt="" />
-              <p>{recentPrompt}</p>
+              <img src={assets.user_icon} alt="User Icon" />
+              <p>{recentPrompt || input}</p>
             </div>
             <div className="result-data">
-              <img src={assets.gemini_icon} alt="" />
+              <img src={assets.gemini_icon} alt="Gemini Icon" />
               {loading ? (
                 <div className="loader">
                   <hr />
@@ -67,6 +46,45 @@ const Main = () => {
               )}
             </div>
           </div>
+        ) : (
+          <>
+            <div className="greet">
+              <p>
+                <span>Hello, Developer</span>
+              </p>
+              <p>How can I help you today?</p>
+            </div>
+            <div className="cards">
+              <div className="card" onClick={() => {
+                setInput("Suggest good projects for AR");
+                handleSend();
+              }}>
+                <p>Suggest good projects for AR</p>
+                <img src={assets.compass_icon} alt="Compass Icon" />
+              </div>
+              <div className="card" onClick={() => {
+                setInput("5 min craft ideas");
+                handleSend();
+              }}>
+                <p>5 min craft ideas</p>
+                <img src={assets.bulb_icon} alt="Bulb Icon" />
+              </div>
+              <div className="card" onClick={() => {
+                setInput("Google dev fest pricing");
+                handleSend();
+              }}>
+                <p>Google dev fest pricing</p>
+                <img src={assets.message_icon} alt="Message Icon" />
+              </div>
+              <div className="card" onClick={() => {
+                setInput("Embedded code for Google APIs font");
+                handleSend();
+              }}>
+                <p>Embedded code for Google APIs font</p>
+                <img src={assets.code_icon} alt="Code Icon" />
+              </div>
+            </div>
+          </>
         )}
 
         <div className="main-bottom">
@@ -78,15 +96,15 @@ const Main = () => {
               placeholder="Enter a prompt here"
             />
             <div>
-              <img src={assets.gallery_icon} alt="" />
-              <img src={assets.mic_icon} alt="" />
+              <img src={assets.gallery_icon} alt="Gallery Icon" />
+              <img src={assets.mic_icon} alt="Mic Icon" />
               {input ? (
-                <img onClick={() => onSent()}  src={assets.send_icon} alt="" />
+                <img onClick={handleSend} src={assets.send_icon} alt="Send Icon" />
               ) : null}
             </div>
           </div>
           <p className="bottom-info">
-          NexusAI can make mistakes. Check important info.
+            NexusAI can make mistakes. Check important info.
           </p>
         </div>
       </div>
